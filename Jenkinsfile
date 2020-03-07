@@ -22,10 +22,8 @@ pipeline {
 
                 echo 'Building branch ' + env.GIT_BRANCH
 
-                dir ('firebase-cli') {
-                    sh './build.sh'
-                    sh './release.sh'
-                }
+                sh './build.sh'
+                sh './release.sh'
             }
         }
     }
