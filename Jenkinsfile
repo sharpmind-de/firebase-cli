@@ -1,7 +1,7 @@
 pipeline {
     environment {
-        registry = "sharpmind/firebase-cli"
-        registryCredential = ‘dockerhub’
+        registry = 'sharpmind/firebase-cli'
+        registryCredential = 'dockerhub'
     }
     
     agent {
@@ -23,7 +23,7 @@ pipeline {
             stages {
 
                 // build docker image
-                stage("build") {
+                stage('build') {
                     steps {
                         checkout scm
 
@@ -35,7 +35,7 @@ pipeline {
                 }
                 
                 // push to docker hub
-                stage("push") {
+                stage('push') {
                     steps {
                         script {
                             docker.withRegistry( '', registryCredential ) {
@@ -46,7 +46,7 @@ pipeline {
                 }
 
                 // remove image
-                stage("cleanup") {
+                stage('cleanup') {
                     steps {
                         sh "docker rmi $registry:$BUILD_NUMBER"                    
                     }
